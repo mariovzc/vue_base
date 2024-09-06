@@ -1,4 +1,4 @@
-IMAGE_NAME = vueBase
+IMAGE_NAME = vue_base
 CONTAINER_NAME = Dockerfile.dev
 PORT = 8080
 
