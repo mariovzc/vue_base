@@ -1,22 +1,14 @@
 IMAGE_NAME = vue_base
-CONTAINER_NAME = Dockerfile.dev
 PORT = 8080
 
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build -t $(IMAGE_NAME) -f Dockerfile.dev .
 
 run:
-	docker run -it -p $(PORT):8080 -v $(shell pwd):/app --name $(CONTAINER_NAME) $(IMAGE_NAME)
+	docker run -it -p $(PORT):8080 -v $(shell pwd):/app  $(IMAGE_NAME)
 
 shell:
-	docker exec -it $(CONTAINER_NAME) sh
-
-serve:
-	docker exec -it $(CONTAINER_NAME) npm run serve
-
-stop:
-	docker stop $(CONTAINER_NAME)
-	docker rm $(CONTAINER_NAME)
+	docker run -it --rm -p $(PORT):8080 -v $(shell pwd):/app  $(IMAGE_NAME)
 
 clean:
 	docker system prune -f
